@@ -23,11 +23,12 @@ def image_scraper(soup, base_url):
     images = []
     image_tags = soup.find_all("img")
     for img in image_tags:
-        src = img.get("src")
-        # Handle relative path
-        if "http://" not in src and "https://" not in src and src[:2] !=  "//": 
-            src = base_url + src
-        images.append(src)
+        if img.has_attr("src"):
+            src = img.get("src")
+            # Handle relative path
+            if "http://" not in src and "https://" not in src and src[:2] !=  "//": 
+                src = base_url + src
+            images.append(src)
     return images
 
 

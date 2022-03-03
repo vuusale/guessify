@@ -7,8 +7,8 @@ app = Flask(__name__)
 def index():
 	if request.method == 'POST':
 		url = request.form.get('url')
-		scraper_result = scraper.scraper(url) #Calling scraper function
-		return render_template('index.html', result='Result')
+		scraper_result = scraper.scraper(url) # Calling scraper function
+		return render_template('index.html', result=scraper_result)
 	return render_template('index.html')
 
 

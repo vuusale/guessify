@@ -15,7 +15,8 @@ def scraper(url):
     base_url = url_pieces[0] + "//" + url_pieces[2]
     images = image_scraper(soup, base_url)
     texts = text_scraper(soup)
-    return {"texts": texts, "images": images}
+    return f"The webpage contains {len(texts)} paragraphs and {len(images)} images."
+    # return {"texts": texts, "images": images}
     
         
 def image_scraper(soup, base_url):

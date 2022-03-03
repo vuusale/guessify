@@ -26,7 +26,7 @@ def image_scraper(soup, base_url):
         if img.has_attr("src"):
             src = img.get("src")
             # Handle relative path
-            if "http://" not in src and "https://" not in src and src[:2] !=  "//": 
+            if "http://" not in src and "https://" not in src and src[:2] != "//": 
                 src = base_url + src
             images.append(src)
     return images

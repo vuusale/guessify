@@ -1,6 +1,5 @@
 import requests
 from bs4 import BeautifulSoup as bs
-import re
 from urllib3.exceptions import InsecureRequestWarning
 requests.packages.urllib3.disable_warnings(category=InsecureRequestWarning)
 
@@ -32,13 +31,13 @@ def image_scraper(soup, base_url):
     return images
 
 
-def text_scraper(soup):
-    all_paragraphs = soup.find_all("p")
+def text_scraper(soup, tag="p"):
+    all_paragraphs = soup.find_all(tag)
     all_texts = [] 
     buffer = ""
     for tag in all_paragraphs:
         # Skip tags with nested paragraphs
-        if tag.find_all("p"):
+        if tag.find_all(tag):
             continue
         buffer += tag.text
         if len(buffer) <= 100:

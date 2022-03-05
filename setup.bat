@@ -1,3 +1,3 @@
 virtualenv venv
 .\venv\Scripts\activate
-pip install -r requirements.txt
+@REM .\venv\Scripts\pip.exe install -r requirements.txt

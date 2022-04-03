@@ -4,3 +4,6 @@ This is a deep learning powered web scraper that extracts paragraphs and images 
 
 ## Setup
 Execute setup script suitable to your operating system and start flask server with `flask run`.
+
+### Text classifier
+Download model, tokenizer and label encoder from [here](https://drive.google.com/drive/folders/1vbcoxmtzY6V-2lVl2PeSswlha44xKCO5?usp=sharing)

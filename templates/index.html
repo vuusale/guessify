@@ -25,6 +25,8 @@
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
                         <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/upload">Upload</a>
                 </ul>
             </div>
         </nav>
@@ -33,19 +35,20 @@
             <form class="form-inline" method="post" action="/">
               <div class="form-group mx-sm-3 mb-2">
                 <input type="text" class="form-control" name="url" placeholder="URL">
-                <input type="number" class="form-control" name="threshold" placeholder="Threshold">
               </div>
             <button type="submit" class="btn btn-primary mb-2">Guess!</button>
             </form>
             <div class="form-group mx-sm-3 mb-2">
+            <p>Text Classification:</p>
             <p class="mb-0">
-                {% if result %}
-                  {% for key,value in result.items() %}
-                  <p>{{ key }} : {{ value }}</p>
-                  {% endfor %}
+                {% if classified_texts %}
+                  {{ classified_texts }}
                 {% endif %}
-                {% if images %}
-                    <p>The number of images: {{ images }}</p>
+            </p>
+            <p>Image Classification:</p>
+            <p class="mb-0">
+                {% if classified_images %}
+                  {{ classified_images }}
                 {% endif %}
             </p>
             </div>

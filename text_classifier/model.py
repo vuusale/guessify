@@ -22,8 +22,8 @@ embed_size = 300 # how big is each word vector
 # max_features = 120000 # how many unique words to use (i.e num rows in embedding vector)
 max_features = 510000 # how many unique words to use (i.e num rows in embedding vector)
 maxlen = 750 # max number of words in a question to use
-batch_size = 100 # how many samples to process at once
-n_epochs = 5 # how many times to iterate over all samples
+batch_size = 150 # how many samples to process at once
+n_epochs = 10 # how many times to iterate over all samples
 
 class Text_Classifier(nn.Module):
     

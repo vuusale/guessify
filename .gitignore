@@ -1,5 +1,7 @@
 venv/
 __pycache__/
-*.pickle
+text_classifier/*.pickle
 model.pt
 text_classifier/old-files
+text_classifier/temp
+*.jpg

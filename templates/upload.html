@@ -31,20 +31,20 @@
 
         <div class="jumbotron">
             <form method="POST" action="/upload" enctype="multipart/form-data">
-  <div class="form-group">
-    <label for="file">Upload image files...</label>
-    <input type="file" class="form-control-file" name="file">
-    <br>
-    <button type="submit" class="btn btn-primary mb-2">Upload</button>
-  </div>
-</form>
-<div class="form-group">
-            <p>
-                {% if result %}
-                  Predicted label: <span style="color:red">{{ result }}</span>
-                {% endif %}
-            </p>
-            </div>
+                <div class="form-group">
+                    <label for="file">Upload image files...</label>
+                    <input type="file" class="form-control-file" name="file">
+                    <br>
+                    <button type="submit" class="btn btn-primary mb-2">Upload</button>
+                </div>
+            </form>
+        <div class="form-group">
+        <p>
+            {% if result %}
+                Predicted label: <span style="color:red">{{ result }}</span>
+            {% endif %}
+        </p>
+        </div>
     </div>
         </div>
 

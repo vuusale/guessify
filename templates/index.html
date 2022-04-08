@@ -35,22 +35,33 @@
             <form class="form-inline" method="post" action="/">
               <div class="form-group mx-sm-3 mb-2">
                 <input type="text" class="form-control" name="url" placeholder="URL">
+                <input type="number" class="form-control" name="threshold" placeholder="Threshold">
               </div>
             <button type="submit" class="btn btn-primary mb-2">Guess!</button>
             </form>
             <div class="form-group mx-sm-3 mb-2">
-            <p>Text Classification:</p>
-            <p class="mb-0">
+                {% if error %}
+                    <p style="color: red; font-weight: bold">{{ error }}</p>
+                {% endif %}
+                
                 {% if classified_texts %}
-                  {{ classified_texts }}
+                    <h3>Report</h3>
+                    <hr>
+                    <h5>Text Classification:</h5>
+                    <p class="mb-0">
+                        <p>Number of paragraphs: {{ number_of_paragraphs }}</p>
+                        {% for key,value in classified_texts.items() %}
+                            <p>{{ key }}: {{ value }}</p>
+                        {% endfor %}
+                    </p>
+                    <h5>Image Classification:</h5>
+                    <p class="mb-0">
+                        <p>Number of images: {{ number_of_images }}</p>
+                        {% for key,value in classified_images.items() %}
+                            <p>{{ key }}: {{ value }}</p>
+                        {% endfor %}
+                    </p>
                 {% endif %}
-            </p>
-            <p>Image Classification:</p>
-            <p class="mb-0">
-                {% if classified_images %}
-                  {{ classified_images }}
-                {% endif %}
-            </p>
             </div>
         </div>
     </div>

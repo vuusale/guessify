@@ -7,7 +7,8 @@ This is a deep learning powered web scraper that extracts paragraphs and images 
 2. Install requirements: `pip install -r requirements`
 3. Install pytorch: `pip3 install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu113`
 4. Download model, tokenizer and label encoder from [here](https://drive.google.com/drive/folders/1vbcoxmtzY6V-2lVl2PeSswlha44xKCO5?usp=sharing) and move to text_classifier folder
-5. Navigate to image_classifier folder and run `python manage.py runserver`
+5. Unzip archive to image_classifier folder
+6. Navigate to this folder and run `python manage.py runserver`
 6. Start flask server with `flask run`.
 7. Give the below article as input:
 

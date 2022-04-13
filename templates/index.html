@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <title>Guessify</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 </head>
 
 <body>
@@ -27,6 +29,8 @@
                         <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
                     <li class="nav-item active">
                         <a class="nav-link" href="/upload">Upload</a>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/singletext">Text Classifier</a>
                 </ul>
             </div>
         </nav>
@@ -63,12 +67,92 @@
                     </p>
                 {% endif %}
             </div>
+            <div id="container" style="width: 75%;">
+            {% if charts %}
+            <canvas id="image-chart" data-url="/chart?url={{ url }}"></canvas>
+            <canvas id="text-chart" data-url="/chart?url={{ url }}"></canvas>
+            {% endif %}
+  </div>
         </div>
     </div>
 
+  <script>
+
+    $(function () {
+
+      var $imageChart = $("#image-chart");
+      $.ajax({
+        url: $imageChart.data("url"),
+        success: function (data) {
+
+          var ctx = $imageChart[0].getContext("2d");
+
+          new Chart(ctx, {
+            type: 'bar',
+            data: {
+              labels: data.data.image_labels,
+              datasets: [{
+                label: 'Classification label',
+                backgroundColor: 'blue',
+                data: data.data.image_data
+              }]
+            },
+            options: {
+              responsive: true,
+              legend: {
+                position: 'top',
+              },
+              title: {
+                display: true,
+                text: 'Image Classification Bar Chart'
+              }
+            }
+          });
+
+        }
+      });
+
+    });
+
+    $(function () {
+
+      var $textChart = $("#text-chart");
+      $.ajax({
+        url: $textChart.data("url"),
+        success: function (data) {
+
+          var ctx = $textChart[0].getContext("2d");
+
+          new Chart(ctx, {
+            type: 'bar',
+            data: {
+              labels: data.data.text_labels,
+              datasets: [{
+                label: 'Classification label',
+                backgroundColor: 'blue',
+                data: data.data.text_data
+              }]
+            },
+            options: {
+              responsive: true,
+              legend: {
+                position: 'top',
+              },
+              title: {
+                display: true,
+                text: 'Text Classification Bar Chart'
+              }
+            }
+          });
+
+        }
+      });
+
+    });
+  </script>
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>

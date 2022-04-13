@@ -4,8 +4,10 @@ import validators
 import pickle
 from image_utils import classify_images, normalize_output, remove_images, download_images, convert2grayscale
 from text_classifier.classifier import classify_texts, classify_text
+from flask import jsonify, make_response
 
 app = Flask(__name__)
+
 
 @app.route('/', methods=['GET','POST'])
 def index():
@@ -24,7 +26,7 @@ def index():
 				classified_images = database[url]['classified_images']
 				number_of_paragraphs = sum(classified_texts.values())
 				number_of_images = sum(classified_images.values())
-				return render_template('index.html', classified_images=classified_images, classified_texts=classified_texts, number_of_paragraphs=number_of_paragraphs, number_of_images=number_of_images)
+				return render_template('index.html', classified_images=classified_images, classified_texts=classified_texts, number_of_paragraphs=number_of_paragraphs, number_of_images=number_of_images, url=url, charts=True)
 		except IOError:
 			print('The first scrapping...')
 			
@@ -74,6 +76,26 @@ def single_text():
 	
 	return render_template('text.html')
 
+@app.route('/chart', methods=['GET'])
+def chart():
+	image_labels = []
+	image_data = []
+	text_labels = []
+	text_data = []
+	url = request.args.get('url')
+	f = open('database.pickle', 'rb')
+	database = pickle.load(f)
+	f.close()
+	if url in database:
+		classified_texts = database[url]['classified_texts']
+		classified_images = database[url]['classified_images']
+		for label, d in classified_images.items():
+			image_labels.append(label)
+			image_data.append(d)
+		for label, d in classified_texts.items():
+			text_labels.append(label)
+			text_data.append(d)
+	return make_response(jsonify(data={'image_labels': image_labels, 'image_data': image_data, 'text_labels': text_labels, 'text_data': text_data}), 200)
 
 if __name__ == '__main__':
     app.run(debug=True)

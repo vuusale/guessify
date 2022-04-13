@@ -50,7 +50,7 @@ def index():
 		with open('database.pickle', 'wb') as f:
 			pickle.dump(database, f)
 
-		return render_template('index.html', classified_images=classified_images, classified_texts=classified_texts, number_of_paragraphs=number_of_paragraphs, number_of_images=number_of_images)
+		return render_template('index.html', classified_images=classified_images, classified_texts=classified_texts, number_of_paragraphs=number_of_paragraphs, number_of_images=number_of_images, charts=True)
 	return render_template('index.html')
 
 @app.route('/upload', methods=['GET','POST'])

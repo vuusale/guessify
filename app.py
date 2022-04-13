@@ -72,7 +72,7 @@ def single_text():
 	if request.method == 'POST':
 		text = request.form.get('text')
 		category = classify_text(text)
-		return render_template('text.html', category=category)
+		return render_template('text.html', result=category)
 	
 	return render_template('text.html')
 

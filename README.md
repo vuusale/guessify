@@ -13,4 +13,5 @@ This is a deep learning powered web scraper that extracts paragraphs and images 
 7. Give the below article as input:
 
 https://ottawacitizen.com/news/world/how-nokia-enabled-russian-hacking-and-made-millions-doing-it-new-york-times/wcm/f066ee3c-f799-40d5-a10f-836e5ace62d1
+
 https://www.popsci.com/technology/right-to-repair-phone/
